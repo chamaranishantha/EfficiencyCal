@@ -1,4 +1,4 @@
-package com.example.htharaka.effcal;
+package com.jjm.it.effical;
 
 import org.junit.Test;
 

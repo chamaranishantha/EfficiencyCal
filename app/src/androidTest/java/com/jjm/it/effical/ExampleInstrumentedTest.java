@@ -1,4 +1,4 @@
-package com.example.htharaka.effcal;
+package com.jjm.it.effical;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.example.htharaka.effcal;
+package com.jjm.it.effical;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -47,6 +47,7 @@ import java.util.Date;
 import java.util.List;
 
 //recorder
+import com.jjm.it.effical.R;
 import com.hbisoft.hbrecorder.HBRecorderListener;
 import com.hbisoft.hbrecorder.HBRecorder;
 

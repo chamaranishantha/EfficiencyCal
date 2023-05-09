@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.example.htharaka.effcal'
+    namespace 'com.jjm.it.effical'
     compileSdkVersion 31
     //buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.example.htharaka.effcal"
+        applicationId "com.jjm.it.EffiCal"
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 1
