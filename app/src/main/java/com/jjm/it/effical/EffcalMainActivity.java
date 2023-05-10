@@ -332,40 +332,42 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         btnStart=findViewById(R.id.btnStart);
         btnStop=findViewById(R.id.btnStop);
         hbRecorder.setVideoEncoder("H264");
-        testBtn =(Button) findViewById(R.id.start_record);
 
-        testBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(EffcalMainActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //testBtn =(Button) findViewById(R.id.start_record);
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
+//        testBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(EffcalMainActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    //first check if permissions was granted
-                    if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE)) {
-                        hasPermissions = true;
-                    }
-                    if (hasPermissions) {
-
-                        startRecordingScreen();
-
-                    }
-                } else {
-                    //showLongToast("This library requires API 21>");
-                }
-            }
-        });
-        btnStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hbRecorder.stopScreenRecording();
-            }
-        });
+//        btnStart.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    //first check if permissions was granted
+//                    if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE)) {
+//                        hasPermissions = true;
+//                    }
+//                    if (hasPermissions) {
+//
+//                        startRecordingScreen();
+//
+//                    }
+//                } else {
+//                    Toast.makeText(EffcalMainActivity.this, "Permission Error", Toast.LENGTH_SHORT).show();
+//                    //showLongToast("This library requires API 21>");
+//                }
+//            }
+//        });
+//        btnStop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                hbRecorder.stopScreenRecording();
+//            }
+//        });
 
 
         projectionManager = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
@@ -387,11 +389,10 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
                         hasPermissions = true;
                     }
                     if (hasPermissions) {
-
                         startRecordingScreen();
-
                     }
                 } else {
+                    Toast.makeText(EffcalMainActivity.this, "Permission Error", Toast.LENGTH_SHORT).show();
                     //showLongToast("This library requires API 21>");
                 }
             }
@@ -472,11 +473,8 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         mEditText = (EditText) findViewById(R.id.editText);
         //screencapture
 
-        //screencapture
-
 
     }
-    //screencapture
     //screencapture
 
 
