@@ -28,7 +28,6 @@
 
         <activity android:name="com.jjm.it.effical.LandingActivity"></activity>
         <activity android:name="com.jjm.it.effical.EffcalMainActivity"></activity>
-
         <service android:name="com.jjm.it.effical.RecordService"/>
     </application>
 

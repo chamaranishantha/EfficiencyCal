@@ -22,11 +22,10 @@ public class SplashActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(SplashActivity.this,LandingActivity.class);
+                Intent intent=new Intent(SplashActivity.this,EffcalMainActivity.class);
                 startActivity(intent);
                 finish();
             }
         },3000);
-
     }
 }
