@@ -132,7 +132,7 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         ORIENTATIONS.append(Surface.ROTATION_180, 180);
         ORIENTATIONS.append(Surface.ROTATION_270, 270);
     }
-    private Button testBtn;
+
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,6 +260,7 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SCREEN_RECORD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                //setOutputPath();
                 //Start screen recording
                 hbRecorder.startScreenRecording(data, resultCode, this);
 
