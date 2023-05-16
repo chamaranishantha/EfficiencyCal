@@ -133,6 +133,7 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         ORIENTATIONS.append(Surface.ROTATION_270, 270);
     }
 
+    EditText epfNo_text,opr_text,smv_value,lap_ps,lap_eff,lap_smv,lap_time;
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,9 +154,17 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         mTextureView = (TextureView) findViewById(R.id.textureView);
         mRecordStartButton = (ImageButton) findViewById(R.id.btnStart);
         mRecordStopButton = (ImageButton) findViewById(R.id.btnStop);
+        epfNo_text=findViewById(R.id.epfNo_text);
+        opr_text=findViewById(R.id.opr_text);
+        smv_value=findViewById(R.id.editText);
+        lap_ps=findViewById(R.id.lap_Pc);
+        lap_eff=findViewById(R.id.lap_eff);
+        lap_smv=findViewById(R.id.lap_smv);
+        lap_time=findViewById(R.id.lap_time);
         mRecordStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     //first check if permissions was granted
                     if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE)) {
@@ -192,6 +201,17 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
                     ef = ((ActualSMV * totalPCs) / totalTime) * 100;
                     Toast.makeText(getApplicationContext(), " Min-" + totalTime + " PCs-" + totalPCs + " SMV-" + smv + " Eff-" + ef, Toast.LENGTH_SHORT).show();
 
+                    String convertTime=String.format("%.2f", totalTime);
+
+                    String lpsPcsStr= String.valueOf(totalPCs);
+                    String lpsEffStr= String.valueOf(ef);
+                    String lapSmvStr=String.valueOf(smv);
+                    String laptimeStr=String.valueOf(convertTime);
+
+                    lap_ps.setText("Pcs:"+lpsPcsStr);
+                    lap_eff.setText("Eff:"+lpsEffStr);
+                    lap_smv.setText("SMV:"+lapSmvStr);
+                    lap_time.setText("Time:"+laptimeStr+"(Min)");
                 } else {
                     isstart = true;
                     mChronometer.setBase(SystemClock.elapsedRealtime());
@@ -250,6 +270,7 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         Toast.makeText(this, errorCode+": "+reason, Toast.LENGTH_SHORT).show();
     }
     private void startRecordingScreen() {
+        quickSettings();
         MediaProjectionManager mediaProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
         Intent permissionIntent = mediaProjectionManager != null ? mediaProjectionManager.createScreenCaptureIntent() : null;
         startActivityForResult(permissionIntent, SCREEN_RECORD_REQUEST_CODE);
@@ -260,7 +281,7 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SCREEN_RECORD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                //setOutputPath();
+                setOutputPath();
                 //Start screen recording
                 hbRecorder.startScreenRecording(data, resultCode, this);
 
@@ -270,11 +291,12 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setOutputPath() {
-        String filename = generateFileName();
+
+        String filename = generateFileName2();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             resolver = getContentResolver();
             contentValues = new ContentValues();
-            contentValues.put(MediaStore.Video.Media.RELATIVE_PATH, "SpeedTest/" + "SpeedTest");
+            contentValues.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" + "EffiCal");
             contentValues.put(MediaStore.Video.Media.TITLE, filename);
             contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, filename);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4");
@@ -284,16 +306,34 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
             hbRecorder.setOutputUri(mUri);
         }else{
             createFolder();
-            hbRecorder.setOutputPath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) +"/HBRecorder");
+            hbRecorder.setOutputPath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) +"/EffiCal");
         }
     }
+
+    //quickSettings
+    private void quickSettings() {
+        //hbRecorder.setScreenDimensions(1280, 720);
+        hbRecorder.setScreenDimensions(854, 480);
+        hbRecorder.setVideoFrameRate(15);
+        hbRecorder.recordHDVideo(true);
+        hbRecorder.isAudioEnabled(false);
+        hbRecorder.setVideoBitrate(7500000);
+    }
+
     //Generate a timestamp to be used as a file name
     private String generateFileName() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
         Date curDate = new Date(System.currentTimeMillis());
         return formatter.format(curDate).replace(" ", "");
-    }
 
+    }
+    public String generateFileName2() {
+       String epf_no = epfNo_text.getText().toString();
+       String oper = opr_text.getText().toString();
+       String smv = smv_value.getText().toString();
+       String last_name= epf_no+"_"+oper+"_"+smv;
+        return last_name;
+    }
     //Check if permissions was granted
     private boolean checkSelfPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -328,7 +368,7 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
     }
     //Create Folder
     private void createFolder() {
-        File f1 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "SpeedTest");
+        File f1 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "EffiCal");
         if (!f1.exists()) {
             if (f1.mkdirs()) {
                 Log.i("Folder ", "created");

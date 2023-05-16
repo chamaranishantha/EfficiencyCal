@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp" />
+        android:layout_marginBottom="4dp" />
 
     <ImageButton
         android:id="@+id/btnStop"
@@ -59,7 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColor="#ff0000"
+        android:textColor="@color/jjm_blue_color"
+        android:backgroundTint="@color/jjm_blue_color"
         android:inputType="numberDecimal"
         android:layout_above="@+id/textView"
         android:layout_alignEnd="@+id/textView"
@@ -70,7 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SMV"
-        android:textColor="#ff0000"
+        android:textColor="@color/jjm_blue_color"
+        android:backgroundTint="@color/jjm_blue_color"
         android:layout_above="@+id/btnStop"
         android:layout_alignEnd="@+id/btnStop"
         android:layout_marginEnd="13dp" />
@@ -79,7 +81,8 @@
         android:id="@+id/chronometer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ff0000"
+        android:textColor="@color/jjm_blue_color"
+        android:backgroundTint="@color/jjm_blue_color"
         android:textSize="25dp"
         android:layout_above="@+id/imageButton3"
         android:layout_toStartOf="@+id/imageButton4" />
@@ -115,7 +118,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:hint="EPF No"
-        android:textColor="#ff0000"
+        android:textColor="@color/jjm_blue_color"
+        android:backgroundTint="@color/jjm_blue_color"
         android:textSize="21dp"
         android:textStyle="bold"
         android:cursorVisible="false"/>
@@ -131,9 +135,66 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:hint="Operation"
-        android:textColor="#ff0000"
+        android:textColor="@color/jjm_blue_color"
+        android:backgroundTint="@color/jjm_blue_color"
         android:textSize="21dp"
         android:textStyle="bold"
         android:cursorVisible="false"/>
+
+    <EditText
+        android:id="@+id/lap_Pc"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lap_smv"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/transparent"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textColor="@color/jjm_blue_color"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/lap_eff"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lap_Pc"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/transparent"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textColor="@color/jjm_blue_color"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/lap_smv"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/epfNo_text"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/transparent"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/jjm_blue_color" />
+
+    <EditText
+        android:id="@+id/lap_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lap_eff"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/transparent"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/jjm_blue_color" />
 
 </RelativeLayout>
