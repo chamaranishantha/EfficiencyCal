@@ -192,21 +192,29 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
             @Override
             public void onClick(View v) {
                 smv = mEditText.getText().toString();
-                ActualSMV = Float.parseFloat(smv);
+                try {
+                    ActualSMV = Float.parseFloat(smv);
+                } catch (Exception e) {
+                    // This will catch any exception, because they are all descended from Exception
+                    System.out.println("Error " + e.getMessage());
+                    Toast.makeText(getApplicationContext(), "Enter SMV Value", Toast.LENGTH_SHORT).show();
+                    //return null;
+                }
+
                 if (isstart) {
                     smv = mEditText.getText().toString();
                     totalPCs = totalPCs + 1;
                     totalTimeElaps = SystemClock.elapsedRealtime() - mChronometer.getBase();
                     totalTime = (((float) totalTimeElaps / (float) 60000));
                     ef = ((ActualSMV * totalPCs) / totalTime) * 100;
-                    Toast.makeText(getApplicationContext(), " Min-" + totalTime + " PCs-" + totalPCs + " SMV-" + smv + " Eff-" + ef, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), " Min-" + totalTime + " PCs-" + totalPCs + " SMV-" + smv + " Eff-" + ef, Toast.LENGTH_SHORT).show();
 
                     String convertTime=String.format("%.2f", totalTime);
 
                     String lpsPcsStr= String.valueOf(totalPCs);
                     String lpsEffStr= String.valueOf(ef);
                     String lapSmvStr=String.valueOf(smv);
-                    String laptimeStr=String.valueOf(convertTime);
+                    String laptimeStr=convertTime;
 
                     lap_ps.setText("Pcs:"+lpsPcsStr);
                     lap_eff.setText("Eff:"+lpsEffStr);
@@ -238,6 +246,13 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
                     Toast.makeText(getApplicationContext(), "All Values Initialed to Zero", Toast.LENGTH_LONG).show();
 
                 }
+                lap_ps.setText("");
+                lap_eff.setText("");
+                lap_smv.setText("");
+                lap_time.setText("");
+
+                mChronometer.setBase(SystemClock.elapsedRealtime());
+                mChronometer.stop();
             }
         });
 

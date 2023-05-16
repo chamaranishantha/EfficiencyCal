@@ -1,13 +1,16 @@
 package com.jjm.it.effical;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+//import android.support.test.InstrumentationRegistry;
+//import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -21,6 +24,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.htharaka.effcal", appContext.getPackageName());
+        assertEquals("com.jjm.it.effical", appContext.getPackageName());
     }
 }

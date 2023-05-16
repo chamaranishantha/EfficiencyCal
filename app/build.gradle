@@ -29,7 +29,7 @@ dependencies {
     })
     implementation 'com.android.support:appcompat-v7:31.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    androidTestImplementation 'junit:junit:4.12'
+    testImplementation  'junit:junit:4.12'
     implementation 'com.github.HBiSoft:HBRecorder:0.1.15'
     implementation 'com.android.support:support-v4:31.0.0'
 
@@ -39,6 +39,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
 
 }
