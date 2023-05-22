@@ -236,12 +236,16 @@ public class EffcalMainActivity extends AppCompatActivity implements HBRecorderL
             public void onClick(View v) {
                 if (isstart) {
 
-                    Toast.makeText(getApplicationContext(), "Total Time-" + totalTime + " Total PCs-" + totalPCs + " Efficiency-" + ef, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(), "Total Time-" + totalTime + " Total PCs-" + totalPCs + " Efficiency-" + ef, Toast.LENGTH_LONG).show();
                     mChronometer.stop();
                     totalPCs = 0;
                     totalTime = 0;
                     totalTimeElaps = 0;
                     isstart = false;
+
+                    //Stopping record when counter stop
+                    Toast.makeText(getApplicationContext(), "Record Stopped", Toast.LENGTH_SHORT).show();
+                    hbRecorder.stopScreenRecording();
                 } else {
                     Toast.makeText(getApplicationContext(), "All Values Initialed to Zero", Toast.LENGTH_LONG).show();
 
